@@ -139,7 +139,7 @@ h3 {
   opacity: 0.9;
 }
 
-/* ===== CARRUSEL ===== */
+/* ===== CARRUSEL (POR QUÉ ELEGIRME) ===== */
 .carrusel-section {
   background: var(--arena-calida);
   color: var(--texto-oscuro);
@@ -232,7 +232,35 @@ h3 {
   transform: scale(1.2);
 }
 
-/* ===== NIVELES SECTION ===== */
+/* ===== MÉTODO SECTION ===== */
+.metodo-section {
+  background: var(--arena-calida);
+  color: var(--texto-oscuro);
+}
+
+.metodo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.metodo-item {
+  text-align: center;
+  padding: 25px;
+}
+
+.metodo-item i {
+  font-size: 2.5rem;
+  color: var(--dorado-elegante);
+  margin-bottom: 1rem;
+}
+
+.metodo-item h3 {
+  color: var(--azul-profundo);
+  margin-bottom: 0.5rem;
+}
+
+/* ===== NIVELES Y PRECIOS (FUSIONADO) ===== */
 .niveles-section {
   background: var(--arena-calida);
   color: var(--texto-oscuro);
@@ -286,6 +314,14 @@ h3 {
   margin: 5px 0;
 }
 
+.pago-info {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--azul-profundo);
+  font-weight: 600;
+  margin-top: 3rem;
+}
+
 /* ===== UNIVERSIDAD SECTION ===== */
 .universidad-section {
   background: var(--azul-profundo);
@@ -337,34 +373,6 @@ h3 {
   color: var(--dorado-elegante);
 }
 
-/* ===== MÉTODO SECTION ===== */
-.metodo-section {
-  background: var(--arena-calida);
-  color: var(--texto-oscuro);
-}
-
-.metodo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
-
-.metodo-item {
-  text-align: center;
-  padding: 25px;
-}
-
-.metodo-item i {
-  font-size: 2.5rem;
-  color: var(--dorado-elegante);
-  margin-bottom: 1rem;
-}
-
-.metodo-item h3 {
-  color: var(--azul-profundo);
-  margin-bottom: 0.5rem;
-}
-
 /* ===== FAQ SECTION ===== */
 .faq-section {
   background: var(--azul-profundo);
@@ -394,48 +402,6 @@ h3 {
   line-height: 1.7;
 }
 
-/* ===== PRECIOS SECTION ===== */
-.precios-section {
-  background: var(--arena-calida);
-  color: var(--texto-oscuro);
-}
-
-.precios-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  margin-bottom: 2rem;
-}
-
-.precio-card {
-  background: var(--blanco);
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: var(--sombra-suave);
-  transition: var(--transicion);
-}
-
-.precio-card:hover {
-  transform: scale(1.05);
-  box-shadow: var(--sombra-hover);
-}
-
-.precio-destacado {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--dorado-elegante);
-  margin: 15px 0;
-}
-
-.pago-info {
-  text-align: center;
-  font-size: 1.1rem;
-  color: var(--azul-profundo);
-  font-weight: 600;
-  margin-top: 2rem;
-}
-
 /* ===== FOOTER SECTION ===== */
 .footer-section {
   background: var(--azul-profundo);
@@ -446,6 +412,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
+  margin-bottom: 30px;
 }
 
 .footer-block {
@@ -507,7 +474,7 @@ h3 {
   color: var(--azul-profundo);
 }
 
-/* ===== TESTIMONIOS MEJORADOS ===== */
+/* ===== TESTIMONIOS (CARRUSEL) ===== */
 .footer-testimonios {
   margin-bottom: 50px;
   text-align: center;
@@ -519,33 +486,69 @@ h3 {
   margin-bottom: 30px;
 }
 
-.testimonios-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+.testimonios-carrusel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.testimonio-item {
-  background: rgba(255, 255, 255, 0.08);
+.testimonios-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  gap: 20px;
+  padding: 20px 0;
+  flex: 1;
+}
+
+.testimonios-track::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonios-btn {
+  background: var(--dorado-elegante);
+  color: var(--azul-profundo);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transicion);
+  z-index: 2;
+  box-shadow: var(--sombra-suave);
+  font-weight: bold;
+}
+
+.testimonios-btn:hover {
+  background: var(--verde-whatsapp);
+  color: var(--blanco);
+  transform: scale(1.1);
+}
+
+.testimonio-card {
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.1);
   padding: 25px;
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: var(--transicion);
 }
 
-.testimonio-item:hover {
+.testimonio-card:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.testimonio-item i {
+.testimonio-card i {
   color: var(--dorado-elegante);
   font-size: 1.5rem;
   opacity: 0.5;
   margin-bottom: 10px;
 }
 
-.testimonio-item p {
+.testimonio-card p {
   font-style: italic;
   line-height: 1.7;
   margin-bottom: 15px;
@@ -556,6 +559,13 @@ h3 {
   color: var(--dorado-elegante);
   font-weight: 600;
   font-size: 0.9rem;
+}
+
+.testimonios-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 /* ===== ENLACES PEQUEÑOS ===== */
@@ -598,11 +608,6 @@ footer p {
   font-size: 0.9rem;
 }
 
-footer a {
-  color: var(--dorado-elegante);
-  text-decoration: none;
-}
-
 .social {
   margin-top: 10px;
 }
@@ -613,7 +618,7 @@ footer a {
   color: var(--verde-whatsapp);
 }
 
-/* ===== MODAL ===== */
+/* ===== MODALES ===== */
 .modal {
   display: none;
   position: fixed;
@@ -654,7 +659,7 @@ footer a {
 }
 
 .modal-terminos {
-  max-width: 600px;
+  max-width: 700px;
   max-height: 80vh;
   overflow-y: auto;
 }
@@ -666,11 +671,13 @@ footer a {
 .terminos-texto h4 {
   color: var(--azul-profundo);
   margin: 20px 0 10px;
+  font-size: 1.1rem;
 }
 
 .terminos-texto p {
   margin-bottom: 15px;
   line-height: 1.7;
+  font-size: 0.95rem;
 }
 
 .close {
@@ -717,33 +724,64 @@ footer a {
 /* ===== TRANSICIONES SUAVES ENTRE SECCIONES ===== */
 .section {
   position: relative;
-}
-
-.section::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.02));
-  pointer-events: none;
   z-index: 1;
 }
 
-.niveles-section::after,
-.metodo-section::after,
-.precios-section::after {
-  background: linear-gradient(to bottom, transparent, rgba(245, 240, 232, 0.2));
+/* Sombra superior difuminada */
+.section::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.03) 0%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 2;
 }
 
-.universidad-section::after,
-.faq-section::after,
-.footer-section::after {
-  background: linear-gradient(to bottom, transparent, rgba(11, 30, 51, 0.3));
+/* Sombra inferior difuminada */
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(to top, 
+    rgba(0, 0, 0, 0.03) 0%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 2;
 }
 
-/* ===== ANIMACIONES ADICIONALES ===== */
+/* Ajustes por tipo de sección */
+.niveles-section::before,
+.metodo-section::before {
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.02) 0%,
+    transparent 100%);
+}
+
+.universidad-section::before,
+.faq-section::before,
+.footer-section::before {
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.02) 0%,
+    transparent 100%);
+}
+
+/* Para móviles */
+@media (max-width: 768px) {
+  .section::before,
+  .section::after {
+    height: 20px;
+  }
+}
+
+/* ===== ANIMACIONES ===== */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -768,7 +806,8 @@ footer a {
     font-size: 2.4rem;
   }
   
-  .carrusel-btn {
+  .carrusel-btn,
+  .testimonios-btn {
     display: none;
   }
   
@@ -779,107 +818,5 @@ footer a {
   .modal-content {
     margin: 20px;
     padding: 20px;
-  }
-}
-
-/* ===== TRANSICIONES SUAVES ENTRE SECCIONES (VERSIÓN FINAL) ===== */
-/* Solapamiento visual sin romper el carrusel */
-
-/* Efecto de continuidad entre secciones */
-.niveles-section,
-.universidad-section,
-.metodo-section,
-.faq-section,
-.precios-section,
-.footer-section {
-  position: relative;
-  z-index: 1;
-}
-
-/* Sombra difuminada en la parte superior de cada sección */
-.niveles-section::before,
-.universidad-section::before,
-.metodo-section::before,
-.faq-section::before,
-.precios-section::before,
-.footer-section::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Ajuste para secciones claras (fondo arena) */
-.niveles-section::before,
-.metodo-section::before,
-.precios-section::before {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.05), transparent);
-}
-
-/* Ajuste para secciones oscuras (fondo azul) */
-.universidad-section::before,
-.faq-section::before,
-.footer-section::before {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
-}
-
-/* Sombra inferior para dar profundidad */
-.niveles-section::after,
-.universidad-section::after,
-.metodo-section::after,
-.faq-section::after,
-.precios-section::after,
-.footer-section::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Ajuste para secciones claras (fondo arena) */
-.niveles-section::after,
-.metodo-section::after,
-.precios-section::after {
-  background: linear-gradient(to top, rgba(0,0,0,0.05), transparent);
-}
-
-/* Ajuste para secciones oscuras (fondo azul) */
-.universidad-section::after,
-.faq-section::after,
-.footer-section::after {
-  background: linear-gradient(to top, rgba(255,255,255,0.05), transparent);
-}
-
-/* Eliminar cualquier margen negativo que pueda causar problemas */
-.section {
-  margin-bottom: 0 !important;
-  padding-bottom: 60px !important;
-}
-
-/* Para móviles */
-@media (max-width: 768px) {
-  .niveles-section::before,
-  .universidad-section::before,
-  .metodo-section::before,
-  .faq-section::before,
-  .precios-section::before,
-  .footer-section::before,
-  .niveles-section::after,
-  .universidad-section::after,
-  .metodo-section::after,
-  .faq-section::after,
-  .precios-section::after,
-  .footer-section::after {
-    height: 15px;
   }
 }
