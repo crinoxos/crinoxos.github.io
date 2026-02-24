@@ -225,9 +225,33 @@
     </div>
   </section>
 
-  <!-- ZONA INFERIOR: EQUIPO + QUEJAS + TÉRMINOS -->
+  <!-- ZONA INFERIOR: Testimonios + Enlaces secundarios -->
   <section class="section footer-section">
     <div class="container">
+      
+      <!-- PRIMERO: Testimonios (arriba) -->
+      <div class="footer-testimonios">
+        <h3>⭐ Lo que dicen mis alumnos</h3>
+        <div class="testimonios-grid">
+          <div class="testimonio-item">
+            <i class="fas fa-quote-left"></i>
+            <p>"Oscar no solo explica, entiende cómo pienso y anticipa mis dudas. He aprobado todas."</p>
+            <span class="testimonio-autor">— María, 2º Bachillerato</span>
+          </div>
+          <div class="testimonio-item">
+            <i class="fas fa-quote-left"></i>
+            <p>"Clarísimo, cercano y muy profesional. 100% recomendable. Mis notas han mejorado muchísimo."</p>
+            <span class="testimonio-autor">— Carlos, Universidad</span>
+          </div>
+          <div class="testimonio-item">
+            <i class="fas fa-quote-left"></i>
+            <p>"Gracias a Oscar entendí por fin las matemáticas. Su método es increíble."</p>
+            <span class="testimonio-autor">— Laura, 4º ESO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEGUNDO: Los dos bloques de servicios (equipo y quejas) -->
       <div class="footer-grid">
         
         <!-- Forma parte del equipo -->
@@ -253,21 +277,24 @@
             <i class="fab fa-whatsapp"></i> Enviar mensaje
           </button>
         </div>
-
-        <!-- Testimonios -->
-        <div class="footer-block">
-          <h3>⭐ Lo que dicen mis alumnos</h3>
-          <p><em>"Oscar no solo explica, entiende cómo pienso y anticipa mis dudas. He aprobado todas."</em></p>
-          <p><em>"Clarísimo, cercano y muy profesional. 100% recomendable."</em></p>
-        </div>
       </div>
+
+      <!-- TERCERO: Enlaces legales pequeños -->
+      <div class="footer-links-pequenos">
+        <a href="#" onclick="openTerminos(); return false;">Términos y condiciones</a>
+        <span class="separador">·</span>
+        <a href="#" onclick="openTrabajaConmigo(); return false;">Trabaja conmigo</a>
+        <span class="separador">·</span>
+        <a href="#" onclick="openFAQ(); return false;">FAQ</a>
+      </div>
+
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (copyright) -->
   <footer>
     <div class="container">
-      <p>© Profesor Oscar · Clases Online · <a href="#" onclick="openTerminos()">Términos y condiciones</a></p>
+      <p>© Profesor Oscar · Clases Online · <a href="#" onclick="openTerminos(); return false;">Términos y condiciones</a></p>
       <div class="social">
         <a href="https://wa.me/34644719635" target="_blank"><i class="fab fa-whatsapp"></i></a>
       </div>
