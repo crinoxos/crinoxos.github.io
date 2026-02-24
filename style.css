@@ -782,20 +782,22 @@ footer a {
   }
 }
 
-/* ===== TRANSICIONES SUAVES ENTRE SECCIONES (RECUPERADAS) ===== */
-/* Este código crea un degradado sutil en los bordes de unión */
+/* ===== TRANSICIONES SUAVES ENTRE SECCIONES (VERSIÓN FINAL) ===== */
+/* Solapamiento visual sin romper el carrusel */
 
-/* Efecto de solapamiento visual entre secciones */
-.niveles-section + .universidad-section,
-.universidad-section + .metodo-section,
-.metodo-section + .faq-section,
-.faq-section + .precios-section,
-.precios-section + .footer-section {
+/* Efecto de continuidad entre secciones */
+.niveles-section,
+.universidad-section,
+.metodo-section,
+.faq-section,
+.precios-section,
+.footer-section {
   position: relative;
-  margin-top: -20px; /* Solapamiento suave */
+  z-index: 1;
 }
 
-/* Sombra superior en la sección que viene después */
+/* Sombra difuminada en la parte superior de cada sección */
+.niveles-section::before,
 .universidad-section::before,
 .metodo-section::before,
 .faq-section::before,
@@ -803,68 +805,81 @@ footer a {
 .footer-section::before {
   content: '';
   position: absolute;
-  top: -30px;
+  top: -5px;
   left: 0;
   width: 100%;
-  height: 60px;
-  background: linear-gradient(to bottom, 
-    rgba(245, 240, 232, 0.3) 0%, 
-    transparent 100%);
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent);
   pointer-events: none;
   z-index: 2;
-  opacity: 0.8;
 }
 
-/* Ajuste para secciones sobre fondo oscuro */
+/* Ajuste para secciones claras (fondo arena) */
+.niveles-section::before,
+.metodo-section::before,
+.precios-section::before {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), transparent);
+}
+
+/* Ajuste para secciones oscuras (fondo azul) */
+.universidad-section::before,
 .faq-section::before,
 .footer-section::before {
-  background: linear-gradient(to bottom, 
-    rgba(11, 30, 51, 0.4) 0%, 
-    transparent 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
 }
 
-/* Efecto de "profundidad" en las tarjetas cercanas al borde */
-.nivel-card:last-child,
-.familia-card:last-child,
-.metodo-item:last-child {
-  margin-bottom: 10px;
-}
-
-/* Sombra inferior en la sección anterior */
+/* Sombra inferior para dar profundidad */
 .niveles-section::after,
 .universidad-section::after,
 .metodo-section::after,
 .faq-section::after,
-.precios-section::after {
+.precios-section::after,
+.footer-section::after {
   content: '';
   position: absolute;
-  bottom: -20px;
+  bottom: -5px;
   left: 0;
   width: 100%;
-  height: 40px;
-  background: inherit;
-  filter: blur(15px);
-  opacity: 0.3;
-  z-index: 1;
+  height: 30px;
+  background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
   pointer-events: none;
+  z-index: 2;
 }
 
-/* Para móviles, reducimos el efecto */
+/* Ajuste para secciones claras (fondo arena) */
+.niveles-section::after,
+.metodo-section::after,
+.precios-section::after {
+  background: linear-gradient(to top, rgba(0,0,0,0.05), transparent);
+}
+
+/* Ajuste para secciones oscuras (fondo azul) */
+.universidad-section::after,
+.faq-section::after,
+.footer-section::after {
+  background: linear-gradient(to top, rgba(255,255,255,0.05), transparent);
+}
+
+/* Eliminar cualquier margen negativo que pueda causar problemas */
+.section {
+  margin-bottom: 0 !important;
+  padding-bottom: 60px !important;
+}
+
+/* Para móviles */
 @media (max-width: 768px) {
-  .niveles-section + .universidad-section,
-  .universidad-section + .metodo-section,
-  .metodo-section + .faq-section,
-  .faq-section + .precios-section,
-  .precios-section + .footer-section {
-    margin-top: -10px;
-  }
-  
+  .niveles-section::before,
   .universidad-section::before,
   .metodo-section::before,
   .faq-section::before,
   .precios-section::before,
-  .footer-section::before {
-    top: -20px;
-    height: 40px;
+  .footer-section::before,
+  .niveles-section::after,
+  .universidad-section::after,
+  .metodo-section::after,
+  .faq-section::after,
+  .precios-section::after,
+  .footer-section::after {
+    height: 15px;
   }
 }
