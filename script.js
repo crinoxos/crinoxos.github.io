@@ -184,7 +184,8 @@ function cargarTestimonios() {
   const track = document.getElementById('testimoniosTrack');
   const dotsContainer = document.getElementById('testimoniosDots');
   
-  if (!track) return;
+  // Si no existen los elementos, salir
+  if (!track || !dotsContainer) return;
   
   track.innerHTML = '';
   dotsContainer.innerHTML = '';
@@ -210,6 +211,8 @@ function cargarTestimonios() {
 
 function moverTestimonios(direccion) {
   const track = document.getElementById('testimoniosTrack');
+  if (!track || track.children.length === 0) return;
+  
   const cardWidth = track.children[0]?.offsetWidth || 300;
   const scrollAmount = cardWidth + 20;
   
@@ -224,6 +227,8 @@ function moverTestimonios(direccion) {
 
 function irATestimonio(index) {
   const track = document.getElementById('testimoniosTrack');
+  if (!track || track.children.length === 0) return;
+  
   const cardWidth = track.children[0]?.offsetWidth || 300;
   
   track.scrollTo({
@@ -249,7 +254,7 @@ function actualizarDotsTestimonios() {
 function iniciarAutoTestimonios() {
   autoTestimonioInterval = setInterval(() => {
     const track = document.getElementById('testimoniosTrack');
-    if (!track) return;
+    if (!track || track.children.length === 0) return;
     
     const maxScroll = track.scrollWidth - track.clientWidth;
     
@@ -270,21 +275,6 @@ function detenerAutoTestimonios() {
 function reanudarAutoTestimonios() {
   iniciarAutoTestimonios();
 }
-
-function configurarObservadoresHover() {
-  const carrusel = document.querySelector('.carrusel-track');
-  if (carrusel) {
-    carrusel.addEventListener('mouseenter', detenerAutoSlide);
-    carrusel.addEventListener('mouseleave', reanudarAutoSlide);
-  }
-  
-  const testimoniosTrack = document.querySelector('.testimonios-track');
-  if (testimoniosTrack) {
-    testimoniosTrack.addEventListener('mouseenter', detenerAutoTestimonios);
-    testimoniosTrack.addEventListener('mouseleave', reanudarAutoTestimonios);
-  }
-}
-
 // ===== FUNCIONES DEL MODAL PRINCIPAL (clases) =====
 function openModal() {
   document.getElementById('modal').style.display = 'block';
