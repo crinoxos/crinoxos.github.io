@@ -791,7 +791,118 @@ footer p {
 .logo {
   animation: float 4s ease-in-out infinite;
 }
+/* ===== TESTIMONIOS CARRUSEL (CORREGIDO) ===== */
+.testimonios-carrusel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
 
+.testimonios-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  gap: 20px;
+  padding: 20px 0;
+  flex: 1;
+}
+
+.testimonios-track::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonios-btn {
+  background: var(--dorado-elegante);
+  color: var(--azul-profundo);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transicion);
+  z-index: 2;
+  box-shadow: var(--sombra-suave);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.testimonios-btn:hover {
+  background: var(--verde-whatsapp);
+  color: var(--blanco);
+  transform: scale(1.1);
+}
+
+.testimonio-card {
+  min-width: 320px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transicion);
+  text-align: left;
+}
+
+.testimonio-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.testimonio-card i {
+  color: var(--dorado-elegante);
+  font-size: 1.8rem;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.testimonio-card p {
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.testimonio-autor {
+  display: block;
+  color: var(--dorado-elegante);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.testimonios-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.testimonio-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gris-suave);
+  cursor: pointer;
+  transition: var(--transicion);
+}
+
+.testimonio-dot.active {
+  background: var(--dorado-elegante);
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonios-btn {
+    display: none;
+  }
+  
+  .testimonio-card {
+    min-width: 280px;
+  }
+}
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   h1 {
