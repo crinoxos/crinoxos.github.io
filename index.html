@@ -2,90 +2,323 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Clases Online – Profesor Oscar</title>
+  <title>Oscar · Clases Online · ESO, Bachillerato y Universidad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Clases online de ESO, Bachillerato y Universidad. Matemáticas, Física, Química y más. Profesor Oscar.">
+  <meta name="description" content="Clases online con Oscar, ingeniero y profesor con 15+ años de experiencia. Matemáticas, Física, Química y más. ESO, Bachillerato, Universidad.">
   <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome para iconos básicos (los personalizados los usaremos como SVG) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-<header class="hero">
-  <img src="assets/logo.jpeg" alt="Profesor Oscar" class="logo">
-  <h1>Clases Online Personalizadas</h1>
-  <p>ESO · Bachillerato · Universidad</p>
-  <button class="btn-primary" onclick="openModal()">Contactar por WhatsApp</button>
-</header>
-
-<section class="section">
-  <h2>Niveles Educativos</h2>
-
-  <div class="levels">
-    <div class="card">
-      <h3>ESO</h3>
-      <p>Matemáticas · Física · Lengua · Química · Inglés</p>
-      <span class="price">16 €/hora</span>
-      <button onclick="openModal()">Solicitar información</button>
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="container">
+      <img src="assets/logo.jpeg" alt="Profesor Oscar" class="logo">
+      <h1>Clases Online Personalizadas</h1>
+      <p class="subtitle">ESO · Bachillerato · Universidad · Máster</p>
+      <p class="hero-description">Ingeniero y profesor con más de 15 años de experiencia. Resultados desde la primera clase.</p>
+      <button class="btn-primary" onclick="openModal()">
+        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+      </button>
     </div>
+  </header>
 
-    <div class="card">
-      <h3>Bachillerato</h3>
-      <p>Matemáticas · Física · Química · Dibujo Técnico</p>
-      <span class="price">16 €/hora</span>
-      <button onclick="openModal()">Solicitar información</button>
+  <!-- POR QUÉ ELEGIRME (CARRUSEL) -->
+  <section class="section carrusel-section">
+    <div class="container">
+      <h2>¿Por qué elegirme?</h2>
+      <div class="carrusel-container">
+        <button class="carrusel-btn prev" onclick="moverCarrusel(-1)">❮</button>
+        <div class="carrusel-track" id="carruselTrack">
+          <!-- Las tarjetas se generarán con JS -->
+        </div>
+        <button class="carrusel-btn next" onclick="moverCarrusel(1)">❯</button>
+      </div>
+      <div class="carrusel-dots" id="carruselDots"></div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Universidad</h3>
-      <p>Asignaturas técnicas y científicas</p>
-      <span class="price">Consultar</span>
-      <button onclick="openModal()">Solicitar información</button>
+  <!-- NIVELES Y ASIGNATURAS -->
+  <section class="section niveles-section">
+    <div class="container">
+      <h2>Niveles y asignaturas</h2>
+      
+      <div class="niveles-grid">
+        <!-- ESO -->
+        <div class="nivel-card" onclick="openModalWithData('ESO')">
+          <h3>ESO</h3>
+          <p class="asignaturas">Matemáticas · Física y Química · Tecnología · Inglés · Lengua · Historia</p>
+          <p class="precio">16€/hora</p>
+          <p class="bonos">Bono 10h: 140€ | Bono 20h: 260€</p>
+          <button class="btn-outline">Solicitar información</button>
+        </div>
+
+        <!-- Bachillerato Sociales -->
+        <div class="nivel-card" onclick="openModalWithData('Bachillerato Sociales')">
+          <h3>Bachillerato Sociales</h3>
+          <p class="asignaturas">Matemáticas · Economía · Inglés</p>
+          <p class="precio">16€/hora</p>
+          <p class="bonos">Bono 10h: 140€ | Bono 20h: 260€</p>
+          <button class="btn-outline">Solicitar información</button>
+        </div>
+
+        <!-- Bachillerato Ciencias -->
+        <div class="nivel-card" onclick="openModalWithData('Bachillerato Ciencias')">
+          <h3>Bachillerato Ciencias</h3>
+          <p class="asignaturas">Matemáticas · Física · Química · Dibujo Técnico · Inglés</p>
+          <p class="precio">16€/hora</p>
+          <p class="bonos">Bono 10h: 140€ | Bono 20h: 260€</p>
+          <button class="btn-outline">Solicitar información</button>
+        </div>
+
+        <!-- Universidad/FP -->
+        <div class="nivel-card" onclick="openModalWithData('Universidad/FP')">
+          <h3>Universidad y FP</h3>
+          <p class="asignaturas">Todas las asignaturas técnicas y científicas</p>
+          <p class="precio">20€/hora</p>
+          <p class="bonos">(Bonos no disponibles)</p>
+          <button class="btn-outline">Ver asignaturas</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASIGNATURAS UNIVERSITARIAS POR FAMILIAS -->
+  <section class="section universidad-section">
+    <div class="container">
+      <h2>Asignaturas universitarias</h2>
+      <div class="familias-grid">
+        
+        <div class="familia-card">
+          <h3><i class="fas fa-calculator"></i> Matemáticas</h3>
+          <ul>
+            <li>Cálculo diferencial</li>
+            <li>Cálculo integral</li>
+            <li>Cálculo multivariable</li>
+            <li>Álgebra lineal</li>
+            <li>Álgebra matricial</li>
+            <li>Métodos numéricos</li>
+            <li>Estadística descriptiva</li>
+            <li>Estadística inferencial</li>
+            <li>Estadística bidimensional</li>
+          </ul>
+        </div>
+
+        <div class="familia-card">
+          <h3><i class="fas fa-flask"></i> Física y Química</h3>
+          <ul>
+            <li>Física 1 y 2</li>
+            <li>Termodinámica</li>
+            <li>Mecánica de fluidos 1 y 2</li>
+            <li>Dinámica</li>
+            <li>Química orgánica</li>
+            <li>Química inorgánica</li>
+          </ul>
+        </div>
+
+        <div class="familia-card">
+          <h3><i class="fas fa-drafting-compass"></i> Ingeniería</h3>
+          <ul>
+            <li>Expresión gráfica</li>
+            <li>Topografía</li>
+            <li>Máquinas térmicas</li>
+            <li>Mecánica de fluidos</li>
+            <li>Y otras asignaturas de ingeniería</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MI MÉTODO -->
+  <section class="section metodo-section">
+    <div class="container">
+      <h2>Mi método de enseñanza</h2>
+      <div class="metodo-grid">
+        <div class="metodo-item">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <h3>Pizarra electrónica</h3>
+          <p>Escribo en tiempo real, tú ves todo. Al final, te envío la pizarra.</p>
+        </div>
+        <div class="metodo-item">
+          <i class="fas fa-video"></i>
+          <h3>Clases por Zoom</h3>
+          <p>100% online, sin necesidad de cámara ni material especial.</p>
+        </div>
+        <div class="metodo-item">
+          <i class="fas fa-tasks"></i>
+          <h3>Seguimiento continuo</h3>
+          <p>Deberes personalizados, corrección y refuerzo constante.</p>
+        </div>
+        <div class="metodo-item">
+          <i class="fas fa-smile"></i>
+          <h3>Trato cercano</h3>
+          <p>Pregunta todas las veces que necesites. Me encanta explicar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES -->
+  <section class="section faq-section">
+    <div class="container">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-grid">
+        
+        <div class="faq-item">
+          <h3>¿Cómo son las clases por Zoom?</h3>
+          <p>Son sobre pizarra electrónica en tiempo real. Verás todo lo que escribo y podrás interactuar. Si lo necesitas, te envío la pizarra al final. Los ejercicios que hagas me los puedes enviar por WhatsApp, correo o el chat de Zoom y los proyectamos.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Necesito algún material especial?</h3>
+          <p>No, nada. Con tu portátil, tableta o incluso móvil es suficiente. No hace falta cámara ni pizarra propia.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Cómo gestiono los pagos?</h3>
+          <p>Por Bizum. Al pagar, reservas tu hora y te envío el enlace de Zoom. Puedes solicitar factura simplificada o convencional cuando quieras.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Puedo cancelar o cambiar una clase?</h3>
+          <p>Sí, con al menos 72 horas de antelación. Solo se puede cambiar una clase por semana y no se admiten excepciones.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Das clases en grupo?</h3>
+          <p>No, todas las clases son individuales. Solo yo y el alumno.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Emitís factura?</h3>
+          <p>Sí, somos una empresa constituida. Te podemos emitir factura convencional o simplificada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS RESUMEN -->
+  <section class="section precios-section">
+    <div class="container">
+      <h2>Precios</h2>
+      <div class="precios-grid">
+        <div class="precio-card">
+          <h3>ESO / Bachillerato</h3>
+          <p class="precio-destacado">16€/hora</p>
+          <p>Bono 10h: 140€</p>
+          <p>Bono 20h: 260€</p>
+        </div>
+        <div class="precio-card">
+          <h3>Universidad / FP</h3>
+          <p class="precio-destacado">20€/hora</p>
+          <p>(Bonos no disponibles)</p>
+        </div>
+        <div class="precio-card">
+          <h3>Máster / Doctorado</h3>
+          <p class="precio-destacado">Consultar</p>
+          <p>Según materia y dedicación</p>
+        </div>
+      </div>
+      <p class="pago-info">✅ Aceptamos Bizum · Factura disponible</p>
+    </div>
+  </section>
+
+  <!-- ZONA INFERIOR: EQUIPO + QUEJAS + TÉRMINOS -->
+  <section class="section footer-section">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Forma parte del equipo -->
+        <div class="footer-block">
+          <h3>📢 Forma parte de mi equipo</h3>
+          <p>Buscamos profesores de alto nivel académico:</p>
+          <ul>
+            <li>Ingeniería (Eléctrica, Electrónica, Civil, Informática)</li>
+            <li>Físicos o Matemáticos</li>
+            <li>Experiencia demostrable en enseñanza reglada española</li>
+            <li>Horarios flexibles</li>
+          </ul>
+          <button class="btn-outline" onclick="openModalWithData('Equipo')">
+            <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+          </button>
+        </div>
+
+        <!-- Quejas y sugerencias -->
+        <div class="footer-block">
+          <h3>💬 Quejas y sugerencias</h3>
+          <p>Tu opinión me ayuda a mejorar. Escríbeme directamente por WhatsApp:</p>
+          <button class="btn-outline" onclick="window.open('https://wa.me/34644719635?text=Hola%20Oscar%2C%20tengo%20una%20queja%20o%20sugerencia%3A%20', '_blank')">
+            <i class="fab fa-whatsapp"></i> Enviar mensaje
+          </button>
+        </div>
+
+        <!-- Testimonios -->
+        <div class="footer-block">
+          <h3>⭐ Lo que dicen mis alumnos</h3>
+          <p><em>"Oscar no solo explica, entiende cómo pienso y anticipa mis dudas. He aprobado todas."</em></p>
+          <p><em>"Clarísimo, cercano y muy profesional. 100% recomendable."</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© Profesor Oscar · Clases Online · <a href="#" onclick="openTerminos()">Términos y condiciones</a></p>
+      <div class="social">
+        <a href="https://wa.me/34644719635" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DE CONTACTO (mejorado) -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h3>📝 Solicitar información</h3>
+      
+      <input type="text" id="modalName" placeholder="Tu nombre" value="">
+      <input type="text" id="modalLevel" placeholder="Nivel académico (ej. 2º Bachillerato)" value="">
+      <input type="text" id="modalSubject" placeholder="Asignatura(s)" value="">
+      <textarea id="modalProfile" placeholder="Perfil del alumno (calificaciones actuales, cómo eres como estudiante, logros que necesitas conseguir)" rows="3"></textarea>
+      <input type="text" id="modalSchedule" placeholder="Disponibilidad horaria" value="">
+      
+      <button class="btn-primary" onclick="sendWhatsApp()">
+        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+      </button>
     </div>
   </div>
-</section>
 
-<section class="section light">
-  <h2>Mi método de enseñanza</h2>
-  <p>
-    Soy Oscar, profesor e ingeniero con más de 10 años de experiencia.
-    Mis clases son 100 % online por Zoom, utilizando pizarra electrónica.
-  </p>
-  <ul class="method">
-    <li>✔ Explicaciones claras y paso a paso</li>
-    <li>✔ Resolución de problemas y razonamiento lógico</li>
-    <li>✔ Preparación específica para exámenes</li>
-    <li>✔ Todas las preguntas que hagan falta</li>
-  </ul>
-</section>
-
-<section class="section">
-  <h2>Precios</h2>
-  <div class="prices">
-    <div>Clase suelta: <strong>16 € / hora</strong></div>
-    <div>Bono 10 horas: <strong>140 €</strong></div>
-    <div>Bono 20 horas: <strong>260 €</strong></div>
-    <small>* Bonos no aplicables a nivel universitario</small>
+  <!-- MODAL DE TÉRMINOS Y CONDICIONES -->
+  <div id="modalTerminos" class="modal">
+    <div class="modal-content modal-terminos">
+      <span class="close" onclick="closeTerminos()">×</span>
+      <h3>📜 Términos y condiciones</h3>
+      <div class="terminos-texto">
+        <h4>1. Bonos y Devoluciones</h4>
+        <p>El importe de los bonos adquiridos para clases online no es reembolsable bajo ninguna circunstancia. En caso de no utilizar todas las clases incluidas en un bono, las clases restantes se cobrarán como clases individuales según el precio vigente en ese momento.</p>
+        
+        <h4>2. Precios y Modificaciones</h4>
+        <p>Los precios de los bonos y las clases individuales pueden variar. Me reservo el derecho de actualizar los precios en cualquier momento, informando a los clientes con antelación suficiente.</p>
+        
+        <h4>3. Cambios y Cancelaciones de Horarios</h4>
+        <p>Cualquier cambio en el horario de una clase ya programada debe realizarse con al menos 72 horas de antelación y por escrito (correo electrónico o mensaje de texto). No es posible modificar o mover más de una hora de clase por semana.</p>
+        
+        <h4>4. Disponibilidad de Horarios</h4>
+        <p>Los horarios no programados están sujetos a mi disponibilidad. Haré todo lo posible para ajustarme a las preferencias del cliente, pero no se garantiza un horario específico sin confirmación previa.</p>
+        
+        <h4>5. Reprogramación por Motivos del Profesor</h4>
+        <p>En caso de que yo no pueda impartir una clase por motivos personales, se ofrecerá al cliente la posibilidad de reagendar la clase para una fecha y horario mutuamente convenientes.</p>
+        
+        <h4>6. Aceptación de los Términos</h4>
+        <p>Al adquirir un bono o agendar una clase, el cliente acepta los presentes términos y condiciones en su totalidad.</p>
+      </div>
+    </div>
   </div>
-</section>
 
-<footer>
-  <p>© Profesor Oscar · Clases Online</p>
-</footer>
-
-<!-- MODAL -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <h3>Contacto por WhatsApp</h3>
-
-    <input type="text" id="name" placeholder="Nombre">
-    <input type="text" id="level" placeholder="Nivel de estudios">
-    <input type="text" id="subject" placeholder="Asignaturas">
-    <input type="text" id="schedule" placeholder="Horario de interés">
-
-    <button class="btn-primary" onclick="sendWhatsApp()">Enviar</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
