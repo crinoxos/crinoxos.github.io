@@ -168,7 +168,7 @@ function iniciarAutoSlide() {
       moverCarrusel(1);
     }
     actualizarDots();
-  }, 5000);
+  }, 4000);
 }
 
 function detenerAutoSlide() {
