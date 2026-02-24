@@ -234,8 +234,8 @@ h3 {
 
 /* ===== MÉTODO SECTION ===== */
 .metodo-section {
-  background: var(--arena-calida);
-  color: var(--texto-oscuro);
+  background: var(--azul-profundo); 
+  color: var(--blanco); 
 }
 
 .metodo-grid {
@@ -324,7 +324,8 @@ h3 {
 
 /* ===== UNIVERSIDAD SECTION ===== */
 .universidad-section {
-  background: var(--azul-profundo);
+  background: var(--arena-calida); 
+  color: var(--texto-oscuro);
 }
 
 .familias-grid {
@@ -335,11 +336,11 @@ h3 {
 }
 
 .familia-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(10px);
   padding: 25px;
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   transition: var(--transicion);
 }
 
@@ -349,7 +350,7 @@ h3 {
 }
 
 .familia-card h3 {
-  color: var(--dorado-elegante);
+  color: var(--azul-profundo);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -370,12 +371,13 @@ h3 {
   content: '▹';
   position: absolute;
   left: 0;
-  color: var(--dorado-elegante);
+  color: var(--azul-profundo);
 }
 
 /* ===== FAQ SECTION ===== */
 .faq-section {
-  background: var(--azul-profundo);
+  background: var(--arena-calida);
+  color: var(--texto-oscuro);
 }
 
 .faq-grid {
@@ -385,14 +387,14 @@ h3 {
 }
 
 .faq-item {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--blanco);
   padding: 25px;
   border-radius: 15px;
-  border-left: 4px solid var(--dorado-elegante);
+  border-left: 4px solid var(--azul-profundo);
 }
 
 .faq-item h3 {
-  color: var(--dorado-elegante);
+  color: var(--azul-profundo);
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
