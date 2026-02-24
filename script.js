@@ -181,11 +181,18 @@ function reanudarAutoSlide() {
 
 // ===== FUNCIONES DEL CARRUSEL DE TESTIMONIOS =====
 function cargarTestimonios() {
+  console.log("Cargando testimonios..."); // Para depurar
   const track = document.getElementById('testimoniosTrack');
   const dotsContainer = document.getElementById('testimoniosDots');
   
-  // Si no existen los elementos, salir
-  if (!track || !dotsContainer) return;
+  if (!track) {
+    console.error("No se encontró el track de testimonios");
+    return;
+  }
+  if (!dotsContainer) {
+    console.error("No se encontró el contenedor de dots");
+    return;
+  }
   
   track.innerHTML = '';
   dotsContainer.innerHTML = '';
@@ -201,12 +208,13 @@ function cargarTestimonios() {
     track.appendChild(card);
     
     const dot = document.createElement('span');
-    dot.className = 'dot';
+    dot.className = 'testimonio-dot'; // Clase DIFERENTE para evitar conflictos
     dot.onclick = () => irATestimonio(index);
     dotsContainer.appendChild(dot);
   });
   
   actualizarDotsTestimonios();
+  console.log("Testimonios cargados: " + track.children.length);
 }
 
 function moverTestimonios(direccion) {
@@ -241,7 +249,7 @@ function irATestimonio(index) {
 }
 
 function actualizarDotsTestimonios() {
-  const dots = document.querySelectorAll('.testimonios-dots .dot');
+  const dots = document.querySelectorAll('.testimonio-dot'); // Clase específica
   dots.forEach((dot, index) => {
     if (index === currentTestimonioSlide) {
       dot.classList.add('active');
@@ -252,6 +260,8 @@ function actualizarDotsTestimonios() {
 }
 
 function iniciarAutoTestimonios() {
+  if (autoTestimonioInterval) clearInterval(autoTestimonioInterval);
+  
   autoTestimonioInterval = setInterval(() => {
     const track = document.getElementById('testimoniosTrack');
     if (!track || track.children.length === 0) return;
