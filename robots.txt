@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://elprofesoroscar.github.io/sitemap.xml
