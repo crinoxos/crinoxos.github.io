@@ -327,10 +327,10 @@ h3 {
   margin-top: 3rem;
 }
 
-/* ===== UNIVERSIDAD SECTION ===== */
+/* ===== UNIVERSIDAD SECTION (AHORA EN AZUL) ===== */
 .universidad-section {
-  background: var(--arena-calida);
-  color: var(--texto-oscuro);
+  background: var(--azul-profundo);
+  color: var(--blanco);
 }
 
 .familias-grid {
@@ -341,22 +341,22 @@ h3 {
 }
 
 .familia-card {
-  background: var(--blanco);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 25px;
   border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: var(--transicion);
 }
 
 .familia-card:hover {
   transform: translateY(-5px);
-  background: var(--arena-calida);
+  background: rgba(255, 255, 255, 0.15);
   border-color: var(--dorado-elegante);
 }
 
 .familia-card h3 {
-  color: var(--azul-profundo);
+  color: var(--dorado-elegante);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -377,7 +377,7 @@ h3 {
   content: '▹';
   position: absolute;
   left: 0;
-  color: var(--azul-profundo);
+  color: var(--dorado-elegante);
 }
 
 /* ===== FAQ SECTION ===== */
