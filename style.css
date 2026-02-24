@@ -439,6 +439,8 @@ h3 {
 /* ===== FOOTER SECTION ===== */
 .footer-section {
   background: var(--azul-profundo);
+  padding-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .footer-grid {
@@ -486,8 +488,12 @@ h3 {
 
 footer {
   background: #061020;
-  padding: 20px 0;
+  padding: 30px 0; 
   text-align: center;
+  position: relative;
+  z-index: 10; 
+  clear: both; 
+  margin-top: 20px;
 }
 
 footer a {
@@ -509,6 +515,34 @@ footer a:hover {
   color: var(--verde-whatsapp);
 }
 
+/* ===== BOTONES ESPECÍFICOS PARA FOOTER ===== */
+.footer-block .btn-outline {
+  background: transparent;
+  color: var(--blanco); /* Texto blanco */
+  border: 2px solid var(--dorado-elegante); /* Borde dorado */
+  padding: 12px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transicion);
+  font-weight: 600;
+  margin-top: 15px;
+  width: 100%; /* Que ocupen todo el ancho */
+}
+
+.footer-block .btn-outline:hover {
+  background: var(--dorado-elegante);
+  color: var(--azul-profundo); /* Texto oscuro al pasar */
+  border-color: var(--dorado-elegante);
+}
+
+.footer-block .btn-outline i {
+  margin-right: 8px;
+  color: var(--verde-whatsapp); /* Icono verde WhatsApp */
+}
+
+.footer-block .btn-outline:hover i {
+  color: var(--azul-profundo); /* Icono oscuro al hover */
+}
 /* ===== MODAL ===== */
 .modal {
   display: none;
@@ -657,7 +691,7 @@ footer a:hover {
 
 .section:last-child {
   margin-bottom: 0;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
 }
 
 /* Superposición visual */
@@ -684,4 +718,101 @@ footer a:hover {
 .section .container {
   position: relative;
   z-index: 2;
+}
+
+/* ===== TESTIMONIOS MEJORADOS ===== */
+.footer-testimonios {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.footer-testimonios h3 {
+  color: var(--dorado-elegante);
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.testimonio-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 25px;
+  border-radius: 15px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transicion);
+}
+
+.testimonio-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.testimonio-item i {
+  color: var(--dorado-elegante);
+  font-size: 1.5rem;
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.testimonio-item p {
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.testimonio-autor {
+  display: block;
+  color: var(--dorado-elegante);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ===== ENLACES PEQUEÑOS ===== */
+.footer-links-pequenos {
+  text-align: center;
+  margin: 40px 0 20px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-links-pequenos a {
+  color: var(--gris-suave);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transicion);
+  padding: 5px 10px;
+}
+
+.footer-links-pequenos a:hover {
+  color: var(--dorado-elegante);
+  text-decoration: underline;
+}
+
+.footer-links-pequenos .separador {
+  color: var(--gris-suave);
+  opacity: 0.5;
+  margin: 0 5px;
+}
+
+/* Ajuste del footer original */
+footer {
+  background: #061020;
+  padding: 25px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+footer p {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--dorado-elegante);
+  text-decoration: none;
 }
