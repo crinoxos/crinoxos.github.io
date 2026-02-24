@@ -647,3 +647,40 @@ footer a:hover {
 .logo {
   animation: float 4s ease-in-out infinite;
 }
+/* ===== SOLAPAMIENTO SUAVE ENTRE SECCIONES ===== */
+.section {
+  position: relative;
+  margin-bottom: -30px; /* Hace que la siguiente sección empiece antes */
+  padding-bottom: 90px; /* Compensa el margen negativo */
+}
+
+.section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 60px;
+}
+
+/* Superposición visual */
+.section + .section {
+  border-top: none;
+  position: relative;
+}
+
+.section + .section::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 5%;
+  width: 90%;
+  height: 60px;
+  background: inherit;
+  filter: blur(20px);
+  opacity: 0.5;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+/* Ajuste para mantener el contenido legible */
+.section .container {
+  position: relative;
+  z-index: 2;
+}
