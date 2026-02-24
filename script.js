@@ -231,3 +231,35 @@ window.onclick = function(event) {
     closeTerminos();
   }
 }
+
+// ===== FUNCIONES PARA ENLACES PEQUEÑOS =====
+function openTrabajaConmigo() {
+  // Abre WhatsApp con mensaje predefinido para candidatos
+  const phone = '34644719635';
+  const message = `Hola Oscar, me interesa formar parte de tu equipo docente.
+
+Mi formación: 
+Mi experiencia: 
+Disponibilidad: `;
+  
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+function openFAQ() {
+  // Desplazamiento suave hasta la sección de preguntas frecuentes
+  const faqSection = document.querySelector('.faq-section');
+  if (faqSection) {
+    faqSection.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    // Si no encuentra la sección, abre un modal simple
+    alert('Pronto tendremos todas las preguntas frecuentes aquí. Mientras tanto, ¡consúltame por WhatsApp!');
+  }
+}
+
+// También puedes mejorar openTerminos() para que cierre el modal con ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeTerminos();
+  }
+});
