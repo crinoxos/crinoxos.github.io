@@ -2,7 +2,10 @@
 let currentSlide = 0;
 let autoSlideInterval;
 
-// ===== DATOS PARA EL CARRUSEL =====
+let currentTestimonioSlide = 0;
+let autoTestimonioInterval;
+
+// ===== DATOS PARA EL CARRUSEL DE RAZONES =====
 const razones = [
   {
     icon: 'fa-solid fa-chart-line',
@@ -43,17 +46,52 @@ const razones = [
     icon: 'fa-solid fa-magic',
     title: 'Polivalente',
     desc: 'Descifro cualquier asignatura, incluso si no la conozco bien.'
+  },
+  {
+    icon: 'fa-solid fa-square-root-variable',
+    title: 'Aprendizaje lógico, no memorístico',
+    desc: 'Explico usando la lógica. El alumno aprende a razonar y demostrar por sí mismo, sin agobios.'
+  }
+];
+
+// ===== DATOS PARA EL CARRUSEL DE TESTIMONIOS =====
+const testimonios = [
+  {
+    texto: "Oscar no solo explica, entiende cómo pienso y anticipa mis dudas. Siempre encuentra la forma de hacer que entienda los conceptos más difíciles. Gracias a él he pasado de suspender matemáticas a sacar notables. Su método de enseñanza basado en la lógica me ha ayudado a razonar por mí misma.",
+    autor: "María Gómez, 2º Bachillerato"
+  },
+  {
+    texto: "Clarísimo, cercano y muy profesional. 100% recomendable. Llegué con un nivel muy bajo en física y en dos meses recuperé todo. Lo que más valoro es que se preocupa por que entiendas el 'por qué' de las cosas, no solo la fórmula. Mis notas han mejorado muchísimo.",
+    autor: "Carlos Rodríguez, Universidad (Ingeniería)"
+  },
+  {
+    texto: "Gracias a Oscar entendí por fin las matemáticas. Su método es increíble. Tenía pánico a los exámenes y ahora afronto las pruebas con seguridad. Explica paso a paso, con paciencia infinita, y siempre está disponible para resolver dudas fuera de clase.",
+    autor: "Laura Martínez, 4º ESO"
+  },
+  {
+    texto: "Mi hijo tenía muchas dificultades con química y física. Oscar no solo le ha ayudado a aprobar, sino que ahora le gustan las ciencias. Como padre, valoro muchísimo su trato cercano y la forma en que motiva a los alumnos. Totalmente recomendable.",
+    autor: "Javier Sánchez, padre de alumno de 1º Bachillerato"
+  },
+  {
+    texto: "Necesitaba preparar el examen de acceso a grado superior y con Oscar lo conseguí a la primera. Sus clases son muy dinámicas, con ejemplos prácticos y siempre adaptadas a mi ritmo. Me enviaba ejercicios personalizados y los corregíamos juntos. Un 10.",
+    autor: "Ana Belén Torres, acceso a FP Superior"
+  },
+  {
+    texto: "Soy estudiante de arquitectura y las asignaturas de cálculo y física se me atragantaban. Oscar tiene una capacidad increíble para simplificar lo complejo. Sus explicaciones lógicas hacen que todo tenga sentido. Además, siempre se adapta a mis horarios. Un profesor excepcional.",
+    autor: "David Ruiz, Universidad (Arquitectura)"
   }
 ];
 
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', function() {
   cargarCarrusel();
+  cargarTestimonios();
   iniciarAutoSlide();
-  configurarObservadorHover();
+  iniciarAutoTestimonios();
+  configurarObservadoresHover();
 });
 
-// ===== FUNCIONES DEL CARRUSEL =====
+// ===== FUNCIONES DEL CARRUSEL PRINCIPAL =====
 function cargarCarrusel() {
   const track = document.getElementById('carruselTrack');
   const dotsContainer = document.getElementById('carruselDots');
@@ -108,7 +146,7 @@ function irASlide(index) {
 }
 
 function actualizarDots() {
-  const dots = document.querySelectorAll('.dot');
+  const dots = document.querySelectorAll('.carrusel-dots .dot');
   dots.forEach((dot, index) => {
     if (index === currentSlide) {
       dot.classList.add('active');
@@ -141,11 +179,109 @@ function reanudarAutoSlide() {
   iniciarAutoSlide();
 }
 
-function configurarObservadorHover() {
+// ===== FUNCIONES DEL CARRUSEL DE TESTIMONIOS =====
+function cargarTestimonios() {
+  const track = document.getElementById('testimoniosTrack');
+  const dotsContainer = document.getElementById('testimoniosDots');
+  
+  if (!track) return;
+  
+  track.innerHTML = '';
+  dotsContainer.innerHTML = '';
+  
+  testimonios.forEach((testimonio, index) => {
+    const card = document.createElement('div');
+    card.className = 'testimonio-card';
+    card.innerHTML = `
+      <i class="fas fa-quote-left"></i>
+      <p>"${testimonio.texto}"</p>
+      <span class="testimonio-autor">— ${testimonio.autor}</span>
+    `;
+    track.appendChild(card);
+    
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.onclick = () => irATestimonio(index);
+    dotsContainer.appendChild(dot);
+  });
+  
+  actualizarDotsTestimonios();
+}
+
+function moverTestimonios(direccion) {
+  const track = document.getElementById('testimoniosTrack');
+  const cardWidth = track.children[0]?.offsetWidth || 300;
+  const scrollAmount = cardWidth + 20;
+  
+  track.scrollBy({
+    left: direccion * scrollAmount,
+    behavior: 'smooth'
+  });
+  
+  currentTestimonioSlide = Math.min(Math.max(currentTestimonioSlide + direccion, 0), testimonios.length - 1);
+  actualizarDotsTestimonios();
+}
+
+function irATestimonio(index) {
+  const track = document.getElementById('testimoniosTrack');
+  const cardWidth = track.children[0]?.offsetWidth || 300;
+  
+  track.scrollTo({
+    left: index * (cardWidth + 20),
+    behavior: 'smooth'
+  });
+  
+  currentTestimonioSlide = index;
+  actualizarDotsTestimonios();
+}
+
+function actualizarDotsTestimonios() {
+  const dots = document.querySelectorAll('.testimonios-dots .dot');
+  dots.forEach((dot, index) => {
+    if (index === currentTestimonioSlide) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+}
+
+function iniciarAutoTestimonios() {
+  autoTestimonioInterval = setInterval(() => {
+    const track = document.getElementById('testimoniosTrack');
+    if (!track) return;
+    
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    
+    if (track.scrollLeft >= maxScroll - 10) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+      currentTestimonioSlide = 0;
+    } else {
+      moverTestimonios(1);
+    }
+    actualizarDotsTestimonios();
+  }, 3000);
+}
+
+function detenerAutoTestimonios() {
+  clearInterval(autoTestimonioInterval);
+}
+
+function reanudarAutoTestimonios() {
+  iniciarAutoTestimonios();
+}
+
+function configurarObservadoresHover() {
   const carrusel = document.querySelector('.carrusel-track');
   if (carrusel) {
     carrusel.addEventListener('mouseenter', detenerAutoSlide);
     carrusel.addEventListener('mouseleave', reanudarAutoSlide);
+  }
+  
+  const testimoniosTrack = document.querySelector('.testimonios-track');
+  if (testimoniosTrack) {
+    testimoniosTrack.addEventListener('mouseenter', detenerAutoTestimonios);
+    testimoniosTrack.addEventListener('mouseleave', reanudarAutoTestimonios);
   }
 }
 
