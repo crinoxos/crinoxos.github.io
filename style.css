@@ -781,3 +781,90 @@ footer a {
     padding: 20px;
   }
 }
+
+/* ===== TRANSICIONES SUAVES ENTRE SECCIONES (RECUPERADAS) ===== */
+/* Este código crea un degradado sutil en los bordes de unión */
+
+/* Efecto de solapamiento visual entre secciones */
+.niveles-section + .universidad-section,
+.universidad-section + .metodo-section,
+.metodo-section + .faq-section,
+.faq-section + .precios-section,
+.precios-section + .footer-section {
+  position: relative;
+  margin-top: -20px; /* Solapamiento suave */
+}
+
+/* Sombra superior en la sección que viene después */
+.universidad-section::before,
+.metodo-section::before,
+.faq-section::before,
+.precios-section::before,
+.footer-section::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, 
+    rgba(245, 240, 232, 0.3) 0%, 
+    transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.8;
+}
+
+/* Ajuste para secciones sobre fondo oscuro */
+.faq-section::before,
+.footer-section::before {
+  background: linear-gradient(to bottom, 
+    rgba(11, 30, 51, 0.4) 0%, 
+    transparent 100%);
+}
+
+/* Efecto de "profundidad" en las tarjetas cercanas al borde */
+.nivel-card:last-child,
+.familia-card:last-child,
+.metodo-item:last-child {
+  margin-bottom: 10px;
+}
+
+/* Sombra inferior en la sección anterior */
+.niveles-section::after,
+.universidad-section::after,
+.metodo-section::after,
+.faq-section::after,
+.precios-section::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: inherit;
+  filter: blur(15px);
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Para móviles, reducimos el efecto */
+@media (max-width: 768px) {
+  .niveles-section + .universidad-section,
+  .universidad-section + .metodo-section,
+  .metodo-section + .faq-section,
+  .faq-section + .precios-section,
+  .precios-section + .footer-section {
+    margin-top: -10px;
+  }
+  
+  .universidad-section::before,
+  .metodo-section::before,
+  .faq-section::before,
+  .precios-section::before,
+  .footer-section::before {
+    top: -20px;
+    height: 40px;
+  }
+}
