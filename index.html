@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Clases online con Oscar, ingeniero y profesor con 15+ años de experiencia. Matemáticas, Física, Química y más. ESO, Bachillerato, Universidad.">
   <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome para iconos básicos -->
+  <!-- Font Awesome para iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  <!-- HERO SECTION -->
+  <!-- ===== HERO SECTION ===== -->
   <header class="hero">
     <div class="container">
       <img src="assets/logo.jpeg" alt="Profesor Oscar" class="logo">
@@ -24,7 +24,7 @@
     </div>
   </header>
 
-  <!-- POR QUÉ ELEGIRME (CARRUSEL) -->
+  <!-- ===== POR QUÉ ELEGIRME (CARRUSEL) ===== -->
   <section class="section carrusel-section">
     <div class="container">
       <h2>¿Por qué elegirme?</h2>
@@ -37,10 +37,44 @@
     </div>
   </section>
 
-  <!-- NIVELES Y ASIGNATURAS -->
+  <!-- ===== MI MÉTODO DE ENSEÑANZA ===== -->
+  <section class="section metodo-section">
+    <div class="container">
+      <h2>Mi método de enseñanza</h2>
+      <div class="metodo-grid">
+        <div class="metodo-item">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <h3>Pizarra electrónica</h3>
+          <p>Escribo en tiempo real, tú ves todo. Al final, te envío la pizarra.</p>
+        </div>
+        <div class="metodo-item">
+          <i class="fas fa-video"></i>
+          <h3>Clases por Zoom</h3>
+          <p>100% online, sin necesidad de cámara ni material especial.</p>
+        </div>
+        <div class="metodo-item">
+          <i class="fas fa-tasks"></i>
+          <h3>Seguimiento continuo</h3>
+          <p>Deberes personalizados, corrección y refuerzo constante.</p>
+        </div>
+        <div class="metodo-item">
+          <i class="fas fa-smile"></i>
+          <h3>Trato cercano</h3>
+          <p>Pregunta todas las veces que necesites. Me encanta explicar.</p>
+        </div>
+        <div class="metodo-item">
+          <i class="fas fa-brain"></i>
+          <h3>Aprendizaje lógico, no memorístico</h3>
+          <p>Explico usando la lógica. El alumno aprende a razonar y demostrar por sí mismo, sin agobios ni fórmulas sin sentido.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NIVELES, ASIGNATURAS Y PRECIOS (FUSIONADO) ===== -->
   <section class="section niveles-section">
     <div class="container">
-      <h2>Niveles y asignaturas</h2>
+      <h2>Niveles, asignaturas y precios</h2>
       <div class="niveles-grid">
         <!-- ESO -->
         <div class="nivel-card" onclick="openModalWithData('ESO')">
@@ -50,7 +84,6 @@
           <p class="bonos">Bono 10h: 140€ | Bono 20h: 260€</p>
           <button class="btn-outline">Solicitar información</button>
         </div>
-
         <!-- Bachillerato Sociales -->
         <div class="nivel-card" onclick="openModalWithData('Bachillerato Sociales')">
           <h3>Bachillerato Sociales</h3>
@@ -59,7 +92,6 @@
           <p class="bonos">Bono 10h: 140€ | Bono 20h: 260€</p>
           <button class="btn-outline">Solicitar información</button>
         </div>
-
         <!-- Bachillerato Ciencias -->
         <div class="nivel-card" onclick="openModalWithData('Bachillerato Ciencias')">
           <h3>Bachillerato Ciencias</h3>
@@ -68,20 +100,28 @@
           <p class="bonos">Bono 10h: 140€ | Bono 20h: 260€</p>
           <button class="btn-outline">Solicitar información</button>
         </div>
-
         <!-- Universidad/FP -->
         <div class="nivel-card" onclick="openModalWithData('Universidad/FP')">
           <h3>Universidad y FP</h3>
           <p class="asignaturas">Todas las asignaturas técnicas y científicas</p>
           <p class="precio">20€/hora</p>
           <p class="bonos">(Bonos no disponibles)</p>
-          <button class="btn-outline">Ver asignaturas</button>
+          <button class="btn-outline">Solicitar información</button>
+        </div>
+        <!-- Máster/Doctorado -->
+        <div class="nivel-card" onclick="openModalWithData('Máster/Doctorado')">
+          <h3>Máster y Doctorado</h3>
+          <p class="asignaturas">Asignaturas de postgrado</p>
+          <p class="precio">Consultar</p>
+          <p class="bonos">Según materia y dedicación</p>
+          <button class="btn-outline">Solicitar información</button>
         </div>
       </div>
+      <p class="pago-info">✅ Aceptamos Bizum · Factura disponible</p>
     </div>
   </section>
 
-  <!-- ASIGNATURAS UNIVERSITARIAS POR FAMILIAS -->
+  <!-- ===== ASIGNATURAS UNIVERSITARIAS POR FAMILIAS ===== -->
   <section class="section universidad-section">
     <div class="container">
       <h2>Asignaturas universitarias</h2>
@@ -125,36 +165,7 @@
     </div>
   </section>
 
-  <!-- MI MÉTODO -->
-  <section class="section metodo-section">
-    <div class="container">
-      <h2>Mi método de enseñanza</h2>
-      <div class="metodo-grid">
-        <div class="metodo-item">
-          <i class="fas fa-chalkboard-teacher"></i>
-          <h3>Pizarra electrónica</h3>
-          <p>Escribo en tiempo real, tú ves todo. Al final, te envío la pizarra.</p>
-        </div>
-        <div class="metodo-item">
-          <i class="fas fa-video"></i>
-          <h3>Clases por Zoom</h3>
-          <p>100% online, sin necesidad de cámara ni material especial.</p>
-        </div>
-        <div class="metodo-item">
-          <i class="fas fa-tasks"></i>
-          <h3>Seguimiento continuo</h3>
-          <p>Deberes personalizados, corrección y refuerzo constante.</p>
-        </div>
-        <div class="metodo-item">
-          <i class="fas fa-smile"></i>
-          <h3>Trato cercano</h3>
-          <p>Pregunta todas las veces que necesites. Me encanta explicar.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PREGUNTAS FRECUENTES -->
+  <!-- ===== PREGUNTAS FRECUENTES ===== -->
   <section class="section faq-section">
     <div class="container">
       <h2>Preguntas frecuentes</h2>
@@ -187,59 +198,22 @@
     </div>
   </section>
 
-  <!-- PRECIOS RESUMEN -->
-  <section class="section precios-section">
-    <div class="container">
-      <h2>Precios</h2>
-      <div class="precios-grid">
-        <div class="precio-card">
-          <h3>ESO / Bachillerato</h3>
-          <p class="precio-destacado">16€/hora</p>
-          <p>Bono 10h: 140€</p>
-          <p>Bono 20h: 260€</p>
-        </div>
-        <div class="precio-card">
-          <h3>Universidad / FP</h3>
-          <p class="precio-destacado">20€/hora</p>
-          <p>(Bonos no disponibles)</p>
-        </div>
-        <div class="precio-card">
-          <h3>Máster / Doctorado</h3>
-          <p class="precio-destacado">Consultar</p>
-          <p>Según materia y dedicación</p>
-        </div>
-      </div>
-      <p class="pago-info">✅ Aceptamos Bizum · Factura disponible</p>
-    </div>
-  </section>
-
-  <!-- ZONA INFERIOR: Testimonios + Servicios + Enlaces -->
+  <!-- ===== ZONA INFERIOR: Testimonios + Servicios + Enlaces ===== -->
   <section class="section footer-section">
     <div class="container">
       
-      <!-- PRIMERO: Testimonios -->
+      <!-- TESTIMONIOS (CARRUSEL) -->
       <div class="footer-testimonios">
         <h3>⭐ Lo que dicen mis alumnos</h3>
-        <div class="testimonios-grid">
-          <div class="testimonio-item">
-            <i class="fas fa-quote-left"></i>
-            <p>"Oscar no solo explica, entiende cómo pienso y anticipa mis dudas. He aprobado todas."</p>
-            <span class="testimonio-autor">— María, 2º Bachillerato</span>
-          </div>
-          <div class="testimonio-item">
-            <i class="fas fa-quote-left"></i>
-            <p>"Clarísimo, cercano y muy profesional. 100% recomendable. Mis notas han mejorado muchísimo."</p>
-            <span class="testimonio-autor">— Carlos, Universidad</span>
-          </div>
-          <div class="testimonio-item">
-            <i class="fas fa-quote-left"></i>
-            <p>"Gracias a Oscar entendí por fin las matemáticas. Su método es increíble."</p>
-            <span class="testimonio-autor">— Laura, 4º ESO</span>
-          </div>
+        <div class="testimonios-carrusel-container">
+          <button class="testimonios-btn prev" onclick="moverTestimonios(-1)">❮</button>
+          <div class="testimonios-track" id="testimoniosTrack"></div>
+          <button class="testimonios-btn next" onclick="moverTestimonios(1)">❯</button>
         </div>
+        <div class="testimonios-dots" id="testimoniosDots"></div>
       </div>
 
-      <!-- SEGUNDO: Bloques de servicio -->
+      <!-- BLOQUES DE SERVICIO -->
       <div class="footer-grid">
         <!-- Forma parte del equipo -->
         <div class="footer-block">
@@ -255,7 +229,6 @@
             <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
           </button>
         </div>
-
         <!-- Quejas y sugerencias -->
         <div class="footer-block">
           <h3>💬 Quejas y sugerencias</h3>
@@ -266,7 +239,7 @@
         </div>
       </div>
 
-      <!-- TERCERO: Enlaces legales pequeños -->
+      <!-- ENLACES LEGALES PEQUEÑOS (SOLO UNO) -->
       <div class="footer-links-pequenos">
         <a href="#" onclick="openTerminos(); return false;">Términos y condiciones</a>
         <span class="separador">·</span>
@@ -278,17 +251,19 @@
     </div>
   </section>
 
-  <!-- FOOTER (copyright) -->
+  <!-- ===== FOOTER (copyright) ===== -->
   <footer>
     <div class="container">
-      <p>© Profesor Oscar · Clases Online · <a href="#" onclick="openTerminos(); return false;">Términos y condiciones</a></p>
+      <p>© Profesor Oscar · Clases Online</p>
       <div class="social">
         <a href="https://wa.me/34644719635" target="_blank"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </footer>
 
-  <!-- MODAL DE CONTACTO (para clases) -->
+  <!-- ===== MODALES ===== -->
+
+  <!-- Modal de contacto (para clases) -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">×</span>
@@ -304,29 +279,45 @@
     </div>
   </div>
 
-  <!-- MODAL DE TÉRMINOS Y CONDICIONES -->
+  <!-- Modal de términos y condiciones (VERSIÓN PROFESIONAL) -->
   <div id="modalTerminos" class="modal">
     <div class="modal-content modal-terminos">
       <span class="close" onclick="closeTerminos()">×</span>
       <h3>📜 Términos y condiciones</h3>
       <div class="terminos-texto">
-        <h4>1. Bonos y Devoluciones</h4>
-        <p>El importe de los bonos adquiridos para clases online no es reembolsable bajo ninguna circunstancia. En caso de no utilizar todas las clases incluidas en un bono, las clases restantes se cobrarán como clases individuales según el precio vigente en ese momento.</p>
-        <h4>2. Precios y Modificaciones</h4>
-        <p>Los precios de los bonos y las clases individuales pueden variar. Me reservo el derecho de actualizar los precios en cualquier momento, informando a los clientes con antelación suficiente.</p>
-        <h4>3. Cambios y Cancelaciones de Horarios</h4>
-        <p>Cualquier cambio en el horario de una clase ya programada debe realizarse con al menos 72 horas de antelación y por escrito (correo electrónico o mensaje de texto). No es posible modificar o mover más de una hora de clase por semana.</p>
-        <h4>4. Disponibilidad de Horarios</h4>
-        <p>Los horarios no programados están sujetos a mi disponibilidad. Haré todo lo posible para ajustarme a las preferencias del cliente, pero no se garantiza un horario específico sin confirmación previa.</p>
-        <h4>5. Reprogramación por Motivos del Profesor</h4>
-        <p>En caso de que yo no pueda impartir una clase por motivos personales, se ofrecerá al cliente la posibilidad de reagendar la clase para una fecha y horario mutuamente convenientes.</p>
-        <h4>6. Aceptación de los Términos</h4>
-        <p>Al adquirir un bono o agendar una clase, el cliente acepta los presentes términos y condiciones en su totalidad.</p>
+        <h4>1. Objeto y ámbito de aplicación</h4>
+        <p>El presente documento establece las condiciones generales que regulan la prestación de servicios de enseñanza online ofrecidos por Oscar, en adelante "EL PROFESOR", a través de su sitio web. La contratación de cualquier servicio implica la aceptación plena y sin reservas de todas y cada una de las cláusulas incluidas en las presentes Condiciones Generales.</p>
+        
+        <h4>2. Bonos y política de devoluciones</h4>
+        <p>2.1. Los bonos adquiridos para clases online tienen carácter no reembolsable, conforme a lo dispuesto en el artículo 103.b) del Real Decreto Legislativo 1/2007, por tratarse de servicios educativos personalizados.</p>
+        <p>2.2. En caso de no utilización completa de las clases incluidas en un bono, las sesiones restantes se facturarán individualmente al precio vigente en el momento de la contratación inicial, sin que proceda devolución alguna por las diferencias.</p>
+        
+        <h4>3. Precios y actualizaciones</h4>
+        <p>3.1. Las tarifas publicadas en el sitio web podrán ser modificadas unilateralmente por EL PROFESOR, notificándose dichos cambios con una antelación mínima de 15 días naturales a los clientes con bonos activos.</p>
+        <p>3.2. Los precios incluyen todos los impuestos aplicables, emitiéndose factura conforme a lo establecido en la normativa del Impuesto sobre el Valor Añadido (Ley 37/1992).</p>
+        
+        <h4>4. Modificación y cancelación de sesiones</h4>
+        <p>4.1. Las solicitudes de modificación de horario deberán comunicarse con una antelación mínima de 72 horas mediante correo electrónico o mensajería instantánea.</p>
+        <p>4.2. No se admitirán más de una modificación semanal por alumno, entendiéndose por "semana" el período de lunes a domingo.</p>
+        <p>4.3. La inasistencia no comunicada en el plazo establecido no dará derecho a reposición de la clase ni a devolución del importe.</p>
+        
+        <h4>5. Disponibilidad horaria</h4>
+        <p>Las franjas horarias ofertadas están sujetas a disponibilidad. EL PROFESOR realizará sus mejores esfuerzos para ajustarse a las preferencias del alumno, si bien no se garantiza la asignación de horarios específicos hasta la confirmación expresa de la reserva.</p>
+        
+        <h4>6. Fuerza mayor</h4>
+        <p>En caso de imposibilidad sobrevenida de EL PROFESOR para impartir la clase por causas ajenas a su voluntad (enfermedad, problemas de conectividad, etc.), se ofrecerá al cliente la posibilidad de reprogramar la sesión en fecha y hora mutuamente convenidas, sin que ello genere derecho a indemnización.</p>
+        
+        <h4>7. Protección de datos (RGPD / LOPDGDD)</h4>
+        <p>7.1. En cumplimiento del Reglamento (UE) 2016/679 y de la Ley Orgánica 3/2018, se informa que los datos personales proporcionados serán tratados con la finalidad de gestionar la relación educativa y, en su caso, el envío de facturación.</p>
+        <p>7.2. Los datos no serán cedidos a terceros salvo obligación legal, pudiendo el interesado ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad mediante comunicación acreditada.</p>
+        
+        <h4>8. Legislación aplicable y jurisdicción</h4>
+        <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia que pudiera derivarse de la interpretación o ejecución de las mismas, las partes se someten expresamente a los Juzgados y Tribunales del domicilio del alumno, siempre que este tenga la condición de consumidor, o en su defecto, a los de la ciudad de Madrid.</p>
       </div>
     </div>
   </div>
 
-  <!-- MODAL PARA FORMA PARTE DEL EQUIPO -->
+  <!-- Modal para forma parte del equipo -->
   <div id="modalEquipo" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModalEquipo()">×</span>
@@ -342,7 +333,7 @@
     </div>
   </div>
 
-  <!-- MODAL PARA QUEJAS Y SUGERENCIAS -->
+  <!-- Modal para quejas y sugerencias -->
   <div id="modalQuejas" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModalQuejas()">×</span>
