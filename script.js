@@ -58,11 +58,9 @@ function cargarCarrusel() {
   const track = document.getElementById('carruselTrack');
   const dotsContainer = document.getElementById('carruselDots');
   
-  // Limpiar contenedores
   track.innerHTML = '';
   dotsContainer.innerHTML = '';
   
-  // Crear tarjetas
   razones.forEach((razon, index) => {
     const card = document.createElement('div');
     card.className = 'carrusel-card';
@@ -73,7 +71,6 @@ function cargarCarrusel() {
     `;
     track.appendChild(card);
     
-    // Crear dots
     const dot = document.createElement('span');
     dot.className = 'dot';
     dot.onclick = () => irASlide(index);
@@ -86,18 +83,14 @@ function cargarCarrusel() {
 function moverCarrusel(direccion) {
   const track = document.getElementById('carruselTrack');
   const cardWidth = track.children[0]?.offsetWidth || 300;
-  const scrollAmount = cardWidth + 20; // 20 es el gap
+  const scrollAmount = cardWidth + 20;
   
   track.scrollBy({
     left: direccion * scrollAmount,
     behavior: 'smooth'
   });
   
-  // Actualizar slide actual aproximadamente
-  currentSlide = Math.min(
-    Math.max(currentSlide + direccion, 0),
-    razones.length - 1
-  );
+  currentSlide = Math.min(Math.max(currentSlide + direccion, 0), razones.length - 1);
   actualizarDots();
 }
 
@@ -131,14 +124,13 @@ function iniciarAutoSlide() {
     const maxScroll = track.scrollWidth - track.clientWidth;
     
     if (track.scrollLeft >= maxScroll - 10) {
-      // Si llegamos al final, volvemos al principio
       track.scrollTo({ left: 0, behavior: 'smooth' });
       currentSlide = 0;
     } else {
       moverCarrusel(1);
     }
     actualizarDots();
-  }, 5000); // Cambia cada 5 segundos
+  }, 5000);
 }
 
 function detenerAutoSlide() {
@@ -157,10 +149,9 @@ function configurarObservadorHover() {
   }
 }
 
-// ===== FUNCIONES DEL MODAL =====
+// ===== FUNCIONES DEL MODAL PRINCIPAL (clases) =====
 function openModal() {
   document.getElementById('modal').style.display = 'block';
-  // Limpiar campos
   document.getElementById('modalName').value = '';
   document.getElementById('modalLevel').value = '';
   document.getElementById('modalSubject').value = '';
@@ -181,15 +172,6 @@ function closeModal() {
   document.getElementById('modal').style.display = 'none';
 }
 
-function openTerminos() {
-  document.getElementById('modalTerminos').style.display = 'block';
-}
-
-function closeTerminos() {
-  document.getElementById('modalTerminos').style.display = 'none';
-}
-
-// ===== FUNCIÓN DE WHATSAPP =====
 function sendWhatsApp() {
   const name = document.getElementById('modalName').value;
   const level = document.getElementById('modalLevel').value;
@@ -197,14 +179,12 @@ function sendWhatsApp() {
   const profile = document.getElementById('modalProfile').value;
   const schedule = document.getElementById('modalSchedule').value;
   
-  // Validación básica
   if (!name || !level || !subject || !schedule) {
     alert('Por favor, completa todos los campos obligatorios (Nombre, Nivel, Asignatura y Horario)');
     return;
   }
   
-  const phone = '34644719635'; // Nuevo número
-  
+  const phone = '34644719635';
   const message = `Hola Oscar, soy ${name}.
 
 📚 Nivel académico: ${level}
@@ -214,27 +194,92 @@ function sendWhatsApp() {
 
 Quedo a la espera de tu respuesta. ¡Gracias!`;
 
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
   closeModal();
 }
 
-// ===== CERRAR MODAL AL HACER CLICK FUERA =====
-window.onclick = function(event) {
-  const modal = document.getElementById('modal');
-  const modalTerminos = document.getElementById('modalTerminos');
+// ===== FUNCIONES PARA MODAL DE TÉRMINOS =====
+function openTerminos() {
+  document.getElementById('modalTerminos').style.display = 'block';
+}
+
+function closeTerminos() {
+  document.getElementById('modalTerminos').style.display = 'none';
+}
+
+// ===== FUNCIONES PARA MODAL DE EQUIPO =====
+function openModalEquipo() {
+  document.getElementById('modalEquipo').style.display = 'block';
+  document.getElementById('equipoNombre').value = '';
+  document.getElementById('equipoFormacion').value = '';
+  document.getElementById('equipoExperiencia').value = '';
+  document.getElementById('equipoDisponibilidad').value = '';
+}
+
+function closeModalEquipo() {
+  document.getElementById('modalEquipo').style.display = 'none';
+}
+
+function sendWhatsAppEquipo() {
+  const nombre = document.getElementById('equipoNombre').value;
+  const formacion = document.getElementById('equipoFormacion').value;
+  const experiencia = document.getElementById('equipoExperiencia').value;
+  const disponibilidad = document.getElementById('equipoDisponibilidad').value;
   
-  if (event.target === modal) {
-    closeModal();
+  if (!nombre || !formacion || !disponibilidad) {
+    alert('Por favor, completa los campos obligatorios (Nombre, Formación y Disponibilidad)');
+    return;
   }
-  if (event.target === modalTerminos) {
-    closeTerminos();
+  
+  const phone = '34644719635';
+  const message = `Hola Oscar, me interesa formar parte de tu equipo docente.
+
+👤 Nombre: ${nombre}
+🎓 Formación: ${formacion}
+📝 Experiencia: ${experiencia || 'No especificada'}
+⏰ Disponibilidad: ${disponibilidad}
+
+Quedo a la espera de tu respuesta.`;
+  
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+  closeModalEquipo();
+}
+
+// ===== FUNCIONES PARA MODAL DE QUEJAS =====
+function openModalQuejas() {
+  document.getElementById('modalQuejas').style.display = 'block';
+  document.getElementById('quejasNombre').value = '';
+  document.getElementById('quejasMensaje').value = '';
+}
+
+function closeModalQuejas() {
+  document.getElementById('modalQuejas').style.display = 'none';
+}
+
+function sendWhatsAppQuejas() {
+  const nombre = document.getElementById('quejasNombre').value;
+  const mensaje = document.getElementById('quejasMensaje').value;
+  
+  if (!mensaje) {
+    alert('Por favor, escribe tu queja o sugerencia');
+    return;
   }
+  
+  const phone = '34644719635';
+  const nombreTexto = nombre ? `Nombre: ${nombre}` : 'Anónimo';
+  
+  const message = `📢 QUEJA O SUGERENCIA
+
+${nombreTexto}
+
+Mensaje: ${mensaje}`;
+  
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+  closeModalQuejas();
 }
 
 // ===== FUNCIONES PARA ENLACES PEQUEÑOS =====
 function openTrabajaConmigo() {
-  // Abre WhatsApp con mensaje predefinido para candidatos
   const phone = '34644719635';
   const message = `Hola Oscar, me interesa formar parte de tu equipo docente.
 
@@ -246,20 +291,31 @@ Disponibilidad: `;
 }
 
 function openFAQ() {
-  // Desplazamiento suave hasta la sección de preguntas frecuentes
   const faqSection = document.querySelector('.faq-section');
   if (faqSection) {
     faqSection.scrollIntoView({ behavior: 'smooth' });
-  } else {
-    // Si no encuentra la sección, abre un modal simple
-    alert('Pronto tendremos todas las preguntas frecuentes aquí. Mientras tanto, ¡consúltame por WhatsApp!');
   }
 }
 
-// También puedes mejorar openTerminos() para que cierre el modal con ESC
+// ===== CERRAR MODALES AL HACER CLICK FUERA =====
+window.onclick = function(event) {
+  const modal = document.getElementById('modal');
+  const modalTerminos = document.getElementById('modalTerminos');
+  const modalEquipo = document.getElementById('modalEquipo');
+  const modalQuejas = document.getElementById('modalQuejas');
+  
+  if (event.target === modal) closeModal();
+  if (event.target === modalTerminos) closeTerminos();
+  if (event.target === modalEquipo) closeModalEquipo();
+  if (event.target === modalQuejas) closeModalQuejas();
+}
+
+// ===== CERRAR MODALES CON TECLA ESC =====
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeModal();
     closeTerminos();
+    closeModalEquipo();
+    closeModalQuejas();
   }
 });
