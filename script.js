@@ -275,7 +275,7 @@ function iniciarAutoTestimonios() {
       moverTestimonios(1);
     }
     actualizarDotsTestimonios();
-  }, 3000);
+  }, 5000);
 }
 
 function detenerAutoTestimonios() {
