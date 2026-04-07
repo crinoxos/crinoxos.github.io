@@ -89,7 +89,113 @@ document.addEventListener('DOMContentLoaded', function() {
   iniciarAutoSlide();
   iniciarAutoTestimonios();
   configurarObservadoresHover();
+  configurarNavegacion();
+  if (typeof initAgenda === 'function') initAgenda();
 });
+
+function configurarNavegacion() {
+  const nav = document.querySelector('.site-nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (!nav || !toggle || !links) return;
+
+  function setMenuOpen(open) {
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  toggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    setMenuOpen(!nav.classList.contains('is-open'));
+  });
+
+  links.querySelectorAll('a').forEach(function(anchor) {
+    anchor.addEventListener('click', function() {
+      if (window.matchMedia('(max-width: 960px)').matches) {
+        setMenuOpen(false);
+      }
+    });
+  });
+
+  document.addEventListener('click', function() {
+    if (nav.classList.contains('is-open')) {
+      setMenuOpen(false);
+    }
+  });
+
+  nav.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+}
+
+function slideStep(track) {
+  if (!track || !track.children.length) return 300;
+  const first = track.children[0];
+  const gap = parseFloat(getComputedStyle(track).gap) || 20;
+  return first.offsetWidth + gap;
+}
+
+function syncCarruselDotsFromScroll() {
+  const track = document.getElementById('carruselTrack');
+  if (!track || !track.children.length) return;
+  const step = slideStep(track);
+  const idx = Math.round(track.scrollLeft / step);
+  currentSlide = Math.min(Math.max(idx, 0), razones.length - 1);
+  actualizarDots();
+}
+
+function syncTestimoniosDotsFromScroll() {
+  const track = document.getElementById('testimoniosTrack');
+  if (!track || !track.children.length) return;
+  const step = slideStep(track);
+  const idx = Math.round(track.scrollLeft / step);
+  currentTestimonioSlide = Math.min(Math.max(idx, 0), testimonios.length - 1);
+  actualizarDotsTestimonios();
+}
+
+function configurarObservadoresHover() {
+  const carruselTrack = document.getElementById('carruselTrack');
+  const carruselWrap = document.querySelector('.carrusel-container');
+  const testimoniosTrack = document.getElementById('testimoniosTrack');
+  const testimoniosWrap = document.querySelector('.testimonios-carrusel-container');
+
+  let carruselScrollPending = false;
+  let testimoniosScrollPending = false;
+
+  if (carruselTrack && carruselWrap) {
+    carruselWrap.addEventListener('mouseenter', detenerAutoSlide);
+    carruselWrap.addEventListener('mouseleave', reanudarAutoSlide);
+    carruselWrap.addEventListener('focusin', detenerAutoSlide);
+    carruselWrap.addEventListener('focusout', function(e) {
+      if (!carruselWrap.contains(e.relatedTarget)) reanudarAutoSlide();
+    });
+    carruselTrack.addEventListener('scroll', function() {
+      if (carruselScrollPending) return;
+      carruselScrollPending = true;
+      requestAnimationFrame(function() {
+        carruselScrollPending = false;
+        syncCarruselDotsFromScroll();
+      });
+    }, { passive: true });
+  }
+
+  if (testimoniosTrack && testimoniosWrap) {
+    testimoniosWrap.addEventListener('mouseenter', detenerAutoTestimonios);
+    testimoniosWrap.addEventListener('mouseleave', reanudarAutoTestimonios);
+    testimoniosWrap.addEventListener('focusin', detenerAutoTestimonios);
+    testimoniosWrap.addEventListener('focusout', function(e) {
+      if (!testimoniosWrap.contains(e.relatedTarget)) reanudarAutoTestimonios();
+    });
+    testimoniosTrack.addEventListener('scroll', function() {
+      if (testimoniosScrollPending) return;
+      testimoniosScrollPending = true;
+      requestAnimationFrame(function() {
+        testimoniosScrollPending = false;
+        syncTestimoniosDotsFromScroll();
+      });
+    }, { passive: true });
+  }
+}
 
 // ===== FUNCIONES DEL CARRUSEL PRINCIPAL =====
 function cargarCarrusel() {
@@ -120,27 +226,28 @@ function cargarCarrusel() {
 
 function moverCarrusel(direccion) {
   const track = document.getElementById('carruselTrack');
-  const cardWidth = track.children[0]?.offsetWidth || 300;
-  const scrollAmount = cardWidth + 20;
-  
+  if (!track || !track.children.length) return;
+  const scrollAmount = slideStep(track);
+
   track.scrollBy({
     left: direccion * scrollAmount,
     behavior: 'smooth'
   });
-  
+
   currentSlide = Math.min(Math.max(currentSlide + direccion, 0), razones.length - 1);
   actualizarDots();
 }
 
 function irASlide(index) {
   const track = document.getElementById('carruselTrack');
-  const cardWidth = track.children[0]?.offsetWidth || 300;
-  
+  if (!track || !track.children.length) return;
+  const step = slideStep(track);
+
   track.scrollTo({
-    left: index * (cardWidth + 20),
+    left: index * step,
     behavior: 'smooth'
   });
-  
+
   currentSlide = index;
   actualizarDots();
 }
@@ -157,6 +264,7 @@ function actualizarDots() {
 }
 
 function iniciarAutoSlide() {
+  if (autoSlideInterval) clearInterval(autoSlideInterval);
   autoSlideInterval = setInterval(() => {
     const track = document.getElementById('carruselTrack');
     const maxScroll = track.scrollWidth - track.clientWidth;
@@ -171,6 +279,11 @@ function iniciarAutoSlide() {
   }, 4000);
 }
 
+window.addEventListener('resize', function() {
+  syncCarruselDotsFromScroll();
+  syncTestimoniosDotsFromScroll();
+});
+
 function detenerAutoSlide() {
   clearInterval(autoSlideInterval);
 }
@@ -181,7 +294,6 @@ function reanudarAutoSlide() {
 
 // ===== FUNCIONES DEL CARRUSEL DE TESTIMONIOS =====
 function cargarTestimonios() {
-  console.log("Cargando testimonios..."); // Para depurar
   const track = document.getElementById('testimoniosTrack');
   const dotsContainer = document.getElementById('testimoniosDots');
   
@@ -214,21 +326,19 @@ function cargarTestimonios() {
   });
   
   actualizarDotsTestimonios();
-  console.log("Testimonios cargados: " + track.children.length);
 }
 
 function moverTestimonios(direccion) {
   const track = document.getElementById('testimoniosTrack');
   if (!track || track.children.length === 0) return;
-  
-  const cardWidth = track.children[0]?.offsetWidth || 300;
-  const scrollAmount = cardWidth + 20;
-  
+
+  const scrollAmount = slideStep(track);
+
   track.scrollBy({
     left: direccion * scrollAmount,
     behavior: 'smooth'
   });
-  
+
   currentTestimonioSlide = Math.min(Math.max(currentTestimonioSlide + direccion, 0), testimonios.length - 1);
   actualizarDotsTestimonios();
 }
@@ -236,14 +346,14 @@ function moverTestimonios(direccion) {
 function irATestimonio(index) {
   const track = document.getElementById('testimoniosTrack');
   if (!track || track.children.length === 0) return;
-  
-  const cardWidth = track.children[0]?.offsetWidth || 300;
-  
+
+  const step = slideStep(track);
+
   track.scrollTo({
-    left: index * (cardWidth + 20),
+    left: index * step,
     behavior: 'smooth'
   });
-  
+
   currentTestimonioSlide = index;
   actualizarDotsTestimonios();
 }
@@ -439,11 +549,13 @@ window.onclick = function(event) {
   const modalTerminos = document.getElementById('modalTerminos');
   const modalEquipo = document.getElementById('modalEquipo');
   const modalQuejas = document.getElementById('modalQuejas');
-  
+  const modalSlotLibre = document.getElementById('modalSlotLibre');
+
   if (event.target === modal) closeModal();
   if (event.target === modalTerminos) closeTerminos();
   if (event.target === modalEquipo) closeModalEquipo();
   if (event.target === modalQuejas) closeModalQuejas();
+  if (event.target === modalSlotLibre && typeof closeModalSlotLibre === 'function') closeModalSlotLibre();
 }
 
 // ===== CERRAR MODALES CON TECLA ESC =====
@@ -453,5 +565,12 @@ document.addEventListener('keydown', function(e) {
     closeTerminos();
     closeModalEquipo();
     closeModalQuejas();
+    if (typeof closeModalSlotLibre === 'function') closeModalSlotLibre();
+    const nav = document.querySelector('.site-nav');
+    const t = document.querySelector('.nav-toggle');
+    if (nav && nav.classList.contains('is-open')) {
+      nav.classList.remove('is-open');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    }
   }
 });
