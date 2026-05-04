@@ -1,4 +1,4 @@
-"/**
+/**
  * Calendario de disponibilidad (compatible con la versión anterior).
  * - Acepta export JSON de phpMyAdmin (clases + notashoraslibres) o JSON simple { eventos: [{inicio, fin}] }.
  * - Usa Google Apps Script como endpoint principal.
@@ -194,11 +194,7 @@
           btnF.setAttribute('aria-label','Consultar disponibilidad excepcional el '+formatSlotLabelLong(d2,hour));
           btnF.appendChild(timeSmall); btnF.appendChild(label);
           btnF.addEventListener('click',(function(dC,hC){ return function(){
-            var msg='Hola Oscar, te escribo para consultar si hubiera posibilidad de clase fuera de tu franja habitual.
-
-Día y hora de interés: '+formatSlotLabelLong(dC,hC)+'
-
-Quedo a la espera. ¡Gracias!';
+            var msg='Hola Oscar, te escribo para consultar si hubiera posibilidad de clase fuera de tu franja habitual.\n\nDía y hora de interés: '+formatSlotLabelLong(dC,hC)+'\n\nQuedo a la espera. ¡Gracias!';
             openWhatsApp(msg);
           }; })(new Date(d2.getTime()),hour));
           inner.appendChild(btnF);
@@ -233,16 +229,7 @@ Quedo a la espera. ¡Gracias!';
     var nivel=document.getElementById('slotLibreNivel').value.trim();
     var alumno=document.getElementById('slotLibreAlumno').value.trim();
     if(!nombre||!asig||!nivel||!alumno){ alert('Por favor, completa todos los campos.'); return; }
-    var msg='Hola Oscar, quiero solicitar un hueco libre en tu calendario.
-
-Hueco: '+ctx+'
-
-Nombre (persona de contacto): '+nombre+'
-Asignatura: '+asig+'
-Nivel: '+nivel+'
-Nombre del alumno: '+alumno+'
-
-Gracias.';
+    var msg='Hola Oscar, quiero solicitar un hueco libre en tu calendario.\n\nHueco: '+ctx+'\n\nNombre (persona de contacto): '+nombre+'\nAsignatura: '+asig+'\nNivel: '+nivel+'\nNombre del alumno: '+alumno+'\n\nGracias.';
     openWhatsApp(msg);
     window.closeModalSlotLibre();
   };
@@ -270,11 +257,11 @@ Gracias.';
     var root=document.getElementById('agenda-calendars');
     var actualizadoEl=document.getElementById('agenda-actualizado');
     if(!root) return;
-    root.innerHTML='<p class=\"agenda-loading\">Cargando disponibilidad…</p>';
+    root.innerHTML='<p class="agenda-loading">Cargando disponibilidad…</p>';
 
     fetchFirstAvailable(DATA_URLS, 0, function(err, result){
       if(err||!result){
-        root.innerHTML='<p class=\"agenda-error\">No se pudo cargar el calendario. Si abres en local, usa un servidor estático o publica en GitHub Pages.</p>';
+        root.innerHTML='<p class="agenda-error">No se pudo cargar el calendario. Si abres en local, usa un servidor estático o publica en GitHub Pages.</p>';
         if(actualizadoEl) actualizadoEl.hidden=true;
         return;
       }
@@ -292,4 +279,3 @@ Gracias.';
     });
   };
 })();
-"
