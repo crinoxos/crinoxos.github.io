@@ -41,17 +41,15 @@
     var isSun = dow === 0;
 
     if (isWeekday) {
-      if (hour >= 16 && hour < 18) return true;
-      if (hour >= 19 && hour < 22) return true;
+      if (hour >= 16 && hour < 22) return true;
       return false;
     }
     if (isSat) {
-      if (hour >= 9 && hour < 12) return true;
-      if (hour >= 19 && hour < 22) return true;
+      if (hour >= 16 && hour < 22) return true;
       return false;
     }
     if (isSun) {
-      if (hour >= 9 && hour < 12) return true;
+      if (hour >= 16 && hour < 22) return true;
       return false;
     }
     return false;
